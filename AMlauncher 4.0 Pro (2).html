@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AMlauncher 4.0 Pro</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0f1117;--panel:#14161f;--panel2:#1b1e2a;--line:#262a38;--txt:#e9ebf2;--dim:#9aa0b4;--g:#2f9e57;--g2:#3fd07a;--p:#7b4fd1;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{margin:0;background:var(--bg);color:var(--txt);font-family:'Tajawal',Tahoma,Arial,sans-serif;line-height:1.7;overflow-x:hidden}
+#fx{position:fixed;inset:0;z-index:0;pointer-events:none}
+#glow{position:fixed;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(63,208,122,.16),transparent 65%);pointer-events:none;z-index:0;transform:translate(-50%,-50%);left:50%;top:30%}
+main,header,footer{position:relative;z-index:1}
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+nav{position:sticky;top:0;z-index:5;background:rgba(15,17,23,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+.logo{font-weight:800;font-size:20px;color:var(--g2);text-decoration:none;display:flex;gap:8px;align-items:center}
+nav ul{display:flex;gap:22px;list-style:none;margin:0;padding:0}
+nav a.l{color:var(--dim);text-decoration:none;font-size:15px;transition:color .2s}
+nav a.l:hover{color:var(--txt)}
+.hero{padding:64px 0 40px}
+.hero .wrap{display:grid;grid-template-columns:1fr 1.1fr;gap:40px;align-items:center}
+h1{font-size:clamp(34px,5.5vw,60px);line-height:1.15;margin:0 0 16px;font-weight:800}
+h1 b{background:linear-gradient(90deg,var(--g2),#8be3ff,var(--p),var(--g2));background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:flow 6s linear infinite}
+@keyframes flow{to{background-position:300% 0}}
+.lead{color:var(--dim);font-size:18px;max-width:46ch;margin:0 0 22px}
+.badges{display:flex;gap:10px;flex-wrap:wrap}
+.badge{border:1px solid var(--line);background:var(--panel);padding:6px 14px;border-radius:99px;font-size:14px;color:var(--dim)}
+.badge i{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--g2);margin-inline-start:6px;box-shadow:0 0 8px var(--g2)}
+.win{background:var(--panel);border:1px solid var(--line);border-radius:14px;box-shadow:0 30px 80px rgba(0,0,0,.55),0 0 0 1px rgba(63,208,122,.08);overflow:hidden;transition:transform .15s;will-change:transform}
+.bar{display:flex;gap:7px;padding:10px 14px;background:#0c0e14;border-bottom:1px solid var(--line)}
+.bar span{width:11px;height:11px;border-radius:50%;background:#2b2f3d}
+.app{display:grid;grid-template-columns:210px 1fr;min-height:360px}
+.side{background:var(--panel);border-inline-end:1px solid var(--line);padding:14px 10px;display:flex;flex-direction:column;gap:6px}
+.side h4{margin:2px 8px 10px;color:var(--g);font-size:17px;display:flex;justify-content:space-between}
+.side button{font:inherit;color:var(--dim);background:none;border:0;border-radius:8px;padding:10px 12px;text-align:start;cursor:pointer;display:flex;gap:10px;align-items:center;font-size:14px;transition:background .2s,color .2s,transform .2s}
+.side button:hover{background:var(--panel2);color:var(--txt);transform:translateX(-3px)}
+.side button.on{background:var(--g);color:#fff;font-weight:700;box-shadow:0 0 18px rgba(47,158,87,.45)}
+.side button:focus-visible,.faq button:focus-visible,.btn:focus-visible{outline:2px solid var(--g2);outline-offset:2px}
+.pane{padding:22px;animation:in .35s ease}
+@keyframes in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.pane h3{margin:0 0 6px;font-size:20px}
+.pane p{color:var(--dim);margin:0 0 14px;font-size:14px}
+.chips{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.chip{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:12px;font-size:13px;position:relative;overflow:hidden}
+.chip em{display:block;font-style:normal;color:var(--g2);font-weight:700;font-size:15px}
+.prog{height:5px;background:#0c0e14;border-radius:9px;margin-top:8px;overflow:hidden}
+.prog i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--g),var(--g2));border-radius:9px;transition:width 1.2s ease}
+section{padding:70px 0}
+h2{font-size:clamp(26px,4vw,38px);margin:0 0 10px}
+.sub{color:var(--dim);margin:0 0 34px;max-width:55ch}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px;position:relative;overflow:hidden;transition:border-color .25s}
+.card::before{content:"";position:absolute;inset:0;background:radial-gradient(260px circle at var(--mx,50%) var(--my,0%),rgba(63,208,122,.16),transparent 60%);opacity:0;transition:opacity .25s}
+.card:hover{border-color:rgba(63,208,122,.5)}
+.card:hover::before{opacity:1}
+.card .ic{font-size:28px;margin-bottom:10px}
+.card h3{margin:0 0 6px;font-size:18px;position:relative}
+.card p{margin:0;color:var(--dim);font-size:14.5px;position:relative}
+.support{background:linear-gradient(180deg,transparent,rgba(47,158,87,.06),transparent)}
+.sgrid{display:grid;grid-template-columns:1fr 1.2fr;gap:24px}
+.chan{display:flex;flex-direction:column;gap:12px}
+.ch{display:flex;gap:14px;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.ch .ic{font-size:24px}
+.ch div{flex:1}
+.ch b{display:block}
+.ch span{color:var(--dim);font-size:13.5px}
+.btn{font:inherit;background:var(--g);color:#fff;border:0;border-radius:9px;padding:8px 16px;cursor:pointer;font-weight:700;transition:transform .15s,box-shadow .2s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(47,158,87,.4)}
+.faq{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:6px 18px}
+.faq div{border-bottom:1px solid var(--line)}
+.faq div:last-child{border:0}
+.faq button{font:inherit;color:var(--txt);background:none;border:0;width:100%;text-align:start;padding:14px 0;cursor:pointer;display:flex;justify-content:space-between;font-weight:700}
+.faq button::after{content:"+";color:var(--g2);font-size:20px;transition:transform .25s}
+.faq .open button::after{transform:rotate(45deg)}
+.faq p{margin:0;max-height:0;overflow:hidden;color:var(--dim);font-size:14.5px;transition:max-height .3s,padding .3s}
+.faq .open p{max-height:140px;padding-bottom:14px}
+footer{border-top:1px solid var(--line);padding:26px 0;color:var(--dim);font-size:14px;text-align:center}
+#toast{position:fixed;bottom:calc(24px + env(safe-area-inset-bottom,0px));left:50%;transform:translate(-50%,40px);background:var(--g);color:#fff;padding:10px 20px;border-radius:99px;opacity:0;transition:.3s;z-index:9}
+#toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:820px){.hero .wrap,.sgrid{grid-template-columns:1fr}.grid{grid-template-columns:1fr 1fr}nav ul{display:none}.app{grid-template-columns:150px 1fr}}
+@media(max-width:520px){.grid{grid-template-columns:1fr}.app{grid-template-columns:1fr}.side{flex-direction:row;overflow-x:auto;border-inline-end:0;border-bottom:1px solid var(--line)}.side h4{display:none}.side button{white-space:nowrap}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<canvas id="fx" aria-hidden="true"></canvas><div id="glow" aria-hidden="true"></div>
+<nav><div class="wrap"><a class="logo" href="#top">🎮 AMlauncher 4.0</a>
+<ul><li><a class="l" href="#features">المميزات</a></li><li><a class="l" href="#support">الدعم</a></li><li><a class="l" href="#faq">الأسئلة</a></li></ul></div></nav>
+
+<header class="hero" id="top"><div class="wrap">
+<div>
+<h1>كل ألعابك وأصدقائك في <b>AMlauncher 4.0 Pro</b></h1>
+<p class="lead">لانشر واحد يجمع التشغيل السريع، الدردشة والمكالمات، المكتبات والتحديثات، الحماية، والمتجر. جرّب الواجهة بنفسك على اليمين.</p>
+<div class="badges"><span class="badge"><i></i>الإصدار 4.0 Pro</span><span class="badge">تحديثات تلقائية</span><span class="badge">حماية متقدمة</span></div>
+</div>
+<div class="win" id="tilt"><div class="bar"><span></span><span></span><span></span></div>
+<div class="app"><div class="side" id="side"><h4>AMlauncher 4.0 <span>🎮</span></h4></div><div class="pane" id="pane"></div></div></div>
+</div></header>
+
+<main>
+<section id="features"><div class="wrap">
+<h2>مميزات اللانشر</h2><p class="sub">ست أقسام مصممة عشان كل شيء يكون في مكانه ومن غير تعقيد.</p>
+<div class="grid" id="fgrid"></div>
+</div></section>
+
+<section class="support" id="support"><div class="wrap">
+<h2>الدعم الفني</h2><p class="sub">عندك مشكلة أو سؤال؟ فريق الدعم يرد عليك بسرعة.</p>
+<div class="sgrid">
+<div class="chan">
+<div class="ch"><span class="ic">💬</span><div><b>دردشة مباشرة</b><span>رد خلال دقائق، كل يوم</span></div><button class="btn" data-t="الدردشة المباشرة ستفتح قريبا">ابدأ</button></div>
+<div class="ch"><span class="ic">🎫</span><div><b>فتح تذكرة</b><span>للمشاكل التقنية والحساب</span></div><button class="btn" data-t="تم تجهيز نموذج التذكرة">افتح تذكرة</button></div>
+<div class="ch"><span class="ic">👥</span><div><b>مجتمع AMlauncher</b><span>تعلّم من باقي المستخدمين</span></div><button class="btn" data-t="رابط المجتمع قريبا">انضم</button></div>
+</div>
+<div class="faq" id="faq"></div>
+</div></div></section>
+</main>
+<footer>© 2026 AMlauncher 4.0 Pro. جميع الحقوق محفوظة.</footer>
+<div id="toast" role="status"></div>
+
+<script>
+var T=[
+{k:"home",i:"🏠",n:"الرئيسية والتشغيل",d:"شغّل ألعابك بضغطة واحدة مع تحسين الأداء تلقائيا.",c:[["آخر لعبة","جاهزة للتشغيل"],["تسريع الأداء","مفعّل"],["وقت اللعب","12 ساعة هذا الأسبوع"],["الاتصال","مستقر"]]},
+{k:"chat",i:"💬",n:"الأصدقاء والمكالمات",d:"دردشة ومكالمات صوتية مع أصدقائك بدون الخروج من اللعبة.",c:[["متصلون الآن","8 أصدقاء"],["مكالمة صوتية","جودة عالية"],["غرف اللعب","3 غرف مفتوحة"],["الدعوات","دعوة بضغطة"]]},
+{k:"lib",i:"📚",n:"المكتبات والتحديثات",d:"كل ألعابك في مكان واحد وتحديثها يتم تلقائيا في الخلفية.",c:[["الألعاب","24 لعبة"],["التحديثات","2 قيد التنزيل"],["الحفظ السحابي","محدّث"],["التصنيف","مجموعات مخصصة"]],p:[78,45]},
+{k:"sec",i:"🛡️",n:"الحساب والأمان",d:"حسابك محمي بتحقق ثنائي وتنبيهات عند أي دخول جديد.",c:[["التحقق الثنائي","مفعّل"],["الأجهزة","جهازان موثوقان"],["كلمة المرور","قوية"],["سجل الدخول","لا نشاط مشبوه"]]},
+{k:"store",i:"🪙",n:"المتجر",d:"اكتشف ألعابا وعروضا وكوبونات جديدة كل أسبوع.",c:[["عروض اليوم","خصومات حتى 60%"],["قائمة الأمنيات","5 ألعاب"],["الرصيد","جاهز للاستخدام"],["الجديد","يصل كل أسبوع"]]},
+{k:"set",i:"⚙️",n:"الإعدادات والنظام",d:"تحكم كامل بالمظهر والأداء والإشعارات.",c:[["المظهر","داكن"],["اللغة","العربية"],["الإشعارات","حسب اختيارك"],["الأداء","تلقائي"]]}
+];
+var F=[["🚀","تشغيل سريع","ابدأ أي لعبة من الصفحة الرئيسية مع تحسين تلقائي للأداء."],["💬","أصدقاء ومكالمات","دردشة نصية وصوتية داخل اللانشر وغرف لعب مشتركة."],["📚","مكتبات وتحديثات","مكتبة منظمة وتحديثات تلقائية وحفظ سحابي."],["🛡️","حساب وأمان","تحقق ثنائي وتنبيهات فورية وحماية من الدخول غير المصرح."],["🪙","متجر","عروض أسبوعية وقائمة أمنيات وكوبونات."],["⚙️","إعدادات ونظام","تخصيص المظهر واللغة والإشعارات والأداء."]];
+var Q=[["هل يدعم AMlauncher جميع الألعاب؟","يدعم معظم الألعاب الشائعة، وقائمة الألعاب المدعومة تتوسع مع كل تحديث."],["كيف أحمي حسابي؟","فعّل التحقق الثنائي من قسم الحساب والأمان وراجع سجل الدخول بانتظام."],["نسيت كلمة المرور، ماذا أفعل؟","افتح تذكرة دعم وسنساعدك على استعادة الحساب بعد التحقق من هويتك."],["كيف أتواصل مع الدعم؟","من الدردشة المباشرة أو فتح تذكرة في هذا القسم."]];
+var side=document.getElementById('side'),pane=document.getElementById('pane');
+function show(t){
+ [].forEach.call(side.querySelectorAll('button'),function(b){b.classList.toggle('on',b.dataset.k===t.k)});
+ var h='<h3>'+t.n+'</h3><p>'+t.d+'</p><div class="chips">';
+ t.c.forEach(function(c){h+='<div class="chip">'+c[0]+'<em>'+c[1]+'</em></div>'});
+ h+='</div>';
+ if(t.p){t.p.forEach(function(v){h+='<div class="prog"><i data-w="'+v+'"></i></div>'})}
+ pane.innerHTML=h;
+ setTimeout(function(){[].forEach.call(pane.querySelectorAll('.prog i'),function(e){e.style.width=e.dataset.w+'%'})},60);
+}
+T.forEach(function(t,n){var b=document.createElement('button');b.dataset.k=t.k;b.innerHTML='<span>'+t.i+'</span>'+t.n;b.onclick=function(){show(t)};side.appendChild(b)});
+show(T[0]);
+var fg=document.getElementById('fgrid');
+F.forEach(function(f){var d=document.createElement('div');d.className='card';d.innerHTML='<div class="ic">'+f[0]+'</div><h3>'+f[1]+'</h3><p>'+f[2]+'</p>';
+ d.onmousemove=function(e){var r=d.getBoundingClientRect();d.style.setProperty('--mx',(e.clientX-r.left)+'px');d.style.setProperty('--my',(e.clientY-r.top)+'px')};fg.appendChild(d)});
+var fq=document.getElementById('faq');
+Q.forEach(function(q){var d=document.createElement('div');d.innerHTML='<button>'+q[0]+'</button><p>'+q[1]+'</p>';
+ d.firstChild.onclick=function(){var o=d.classList.contains('open');[].forEach.call(fq.children,function(x){x.classList.remove('open')});if(!o)d.classList.add('open')};fq.appendChild(d)});
+var ts=document.getElementById('toast');
+[].forEach.call(document.querySelectorAll('[data-t]'),function(b){b.onclick=function(){ts.textContent=b.dataset.t;ts.classList.add('show');setTimeout(function(){ts.classList.remove('show')},2200)}});
+var gl=document.getElementById('glow');
+addEventListener('pointermove',function(e){gl.style.left=e.clientX+'px';gl.style.top=e.clientY+'px'});
+var tl=document.getElementById('tilt');
+tl.addEventListener('pointermove',function(e){var r=tl.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;tl.style.transform='perspective(900px) rotateY('+(-x*6)+'deg) rotateX('+(y*6)+'deg)'});
+tl.addEventListener('pointerleave',function(){tl.style.transform=''});
+var cv=document.getElementById('fx'),cx=cv.getContext('2d'),P=[],W,H;
+function rs(){W=cv.width=innerWidth;H=cv.height=innerHeight}rs();addEventListener('resize',rs);
+for(var i=0;i<46;i++)P.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.8+.4,v:Math.random()*.35+.1,a:Math.random()*.5+.15});
+if(!matchMedia('(prefers-reduced-motion:reduce)').matches)(function loop(){cx.clearRect(0,0,W,H);P.forEach(function(p){p.y-=p.v;if(p.y<-5){p.y=H+5;p.x=Math.random()*W}cx.beginPath();cx.fillStyle='rgba(63,208,122,'+p.a+')';cx.arc(p.x,p.y,p.r,0,6.3);cx.fill()});requestAnimationFrame(loop)})();
+</script>
+</body>
+</html>
